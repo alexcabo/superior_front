@@ -2,5 +2,12 @@
     <h1>Bienvenido a Transporte de Pasajeros</h1>
     <p>Explora nuestras rutas y haz tu reserva ahora.</p>
     <!-- <a routerLink="/routes" class="btn">Ver Rutas Disponibles</a> -->
+
+    <div>
+      <h1>Lista de Países</h1>
+      <ul>
+        <li *ngFor="let pais of paises">{{ pais.nombre }}</li>
+      </ul>
+    </div>
   </div>
   
