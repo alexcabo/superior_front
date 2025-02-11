@@ -13,17 +13,12 @@ export class PaisesService {
   // Inyectamos HttpClient directamente
   constructor(private http: HttpClient) {}
 
-  // Método para obtener la lista de países
-  obtenerPaises(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
-  }
-
   add(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data);
   }
 
   update(id: number, data: any): Observable<any> {
-      return this.http.put(this.apiUrl + '/ ${ id }', data);
+      return this.http.put(this.apiUrl + '/' + id + '/edit', data);
   }
 
   getList(): Observable<any> {
@@ -31,6 +26,6 @@ export class PaisesService {
   }
 
   delete(id: number): Observable<any> {
-      return this.http.delete(this.apiUrl + '/ ${ id }');
+      return this.http.delete(this.apiUrl + '/' + id + '/delete');
   }
 }

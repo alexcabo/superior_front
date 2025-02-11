@@ -1,16 +1,24 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Inject, OnInit  } from '@angular/core';
+import { Validators, FormBuilder, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import { PaisesService } from '../../../services/paises.service';
 
 @Component({
   standalone: true,
   selector: 'app-add-edit',
-  imports: [],
+  imports: [
+    ReactiveFormsModule, 
+    MatFormFieldModule, 
+    MatInputModule,
+    MatDialogModule
+  ],
 templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.css'
 })
+
 export class AddEditComponent implements OnInit {
   empForm: FormGroup;
 
@@ -39,7 +47,8 @@ export class AddEditComponent implements OnInit {
         this.servService
           .update(this.data.id, this.empForm.value)
           .subscribe({
-            next: (val: any) => {
+            next: (val) => {
+              //console.log(val);
               alert('Registro Actualizado!');
               this.dialogRef.close(true);
             },

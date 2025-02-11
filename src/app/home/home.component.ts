@@ -1,12 +1,9 @@
 
-import { CommonModule } from '@angular/common';
-
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,8 +26,6 @@ import { AddEditComponent } from '../pantallas/paises/add-edit/add-edit.componen
   standalone: true,
   selector: 'app-home',
   imports: [
-    CommonModule,
-    BrowserModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -52,26 +47,17 @@ import { AddEditComponent } from '../pantallas/paises/add-edit/add-edit.componen
 
 
 export class HomeComponent {
-  // paises: any[] = [];
 
-  // constructor(private paisesService: PaisesService) {}
-
-  // ngOnInit() {
-  //   // Llamamos al servicio para obtener los países
-  //   this.paisesService.obtenerPaises().subscribe((data) => {
-  //     this.paises = data.paises;  // Asignamos la respuesta al array 'paises'
-  //   });
-  // }
 
 // the columns that will be displayed in the employee details table
 displayedColumns: string[] = [
   'id',
-  'Nombre',
-  'Id_afip',
-  'Cuit Fisica',
-  'Cuit Juridica',
-  'Cuit Otra',
-  'actiones',
+  'nombre',
+  'id_afip',
+  'cuit_fisica',
+  'cuit_juridica',
+  'cuit_otra',
+  'acciones',
 ];
 
 // employee list will be assigned to this and it is passed as the data source to the mat-table in the HTML template
@@ -104,16 +90,17 @@ openAddEditDialog() {
 getList() {
   this.servService.getList().subscribe({
     next: (res) => {
-      this.dataSource = new MatTableDataSource(res);
+      this.dataSource = new MatTableDataSource(res.paises);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      console.log(res);
+      //console.log(res);
     },
     error: (err) => {
       console.log(err);
     },
   });
 }
+
 // for searching employees with firstname, lastname, gennder, etc
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
@@ -125,10 +112,11 @@ applyFilter(event: Event) {
 
 delete(id: number) {
   let confirm = window.confirm("¿ Elimina el Registro ?");
-  if(confirm) {
+  
+  if(confirm == true) {
     this.servService.delete(id).subscribe({
-      next: (res) => {
-        alert('Employee deleted!');
+      next: () => {
+        alert('Registro Eliminado!');
         this.getList();
       },
       error: (err) => {
