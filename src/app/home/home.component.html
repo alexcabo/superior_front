@@ -1,7 +1,7 @@
-<div class="home">
+<!--
+ <div class="home">
     <h1>Bienvenido a Transporte de Pasajeros</h1>
     <p>Explora nuestras rutas y haz tu reserva ahora.</p>
-    <!-- <a routerLink="/routes" class="btn">Ver Rutas Disponibles</a> -->
 
     <div>
       <h1>Lista de Países</h1>
@@ -10,4 +10,70 @@
       </ul>
     </div>
   </div>
-  
+-->
+
+<!-- The toolbar of our app -->
+<mat-toolbar color="primary">
+  <span>PAISES</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button color="accent" (click)="openAddEditDialog()">NUEVO</button>
+ </mat-toolbar>
+ <!-- The body of our app -->
+ <div class="main-body">
+     <!-- The filter section -->
+     <mat-form-field aria-haspopup="outline">
+       <mat-label>Filtrar</mat-label>
+       <input matInput (keyup)="applyFilter($event)" placeholder="busqueda" #input>
+     </mat-form-field>
+     <!-- The details table -->
+     <div class="table-container">
+       <table mat-table [dataSource]="dataSource" matSort>
+         <ng-container matColumnDef="id">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+           <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+         </ng-container>
+         <ng-container matColumnDef="nombre">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+           <td mat-cell *matCellDef="let row"> {{row.nombre}}</td>
+         </ng-container>
+          <ng-container matColumnDef="id_afip">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> Id Afip </th>
+           <td mat-cell *matCellDef="let row"> {{row.id_afip}}</td>
+         </ng-container>
+          <ng-container matColumnDef="cuit_fisica">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> CUIT Personas Físicas </th>
+           <td mat-cell *matCellDef="let row"> {{row.cuit_fisica}}</td>
+         </ng-container>
+          <ng-container matColumnDef="cuit_juridica">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> CUIT Personas Jurídicas </th>
+           <td mat-cell *matCellDef="let row"> {{row.cuit_juridica}}</td>
+         </ng-container>
+          <ng-container matColumnDef="cuit_otro">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> CUIT Otras Personas </th>
+           <td mat-cell *matCellDef="let row"> {{row.cuit_otro}}</td>
+         </ng-container>
+
+          <ng-container matColumnDef="action">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+           <td mat-cell *matCellDef="let row">
+             <span (click)="openEditForm(row)" class="action-icon" style="margin-right: 5px;">
+               <mat-icon color="primary">edit</mat-icon>
+             </span>
+             <span (click)="delete(row.id)" class="action-icon">
+               <mat-icon color="warn">delete</mat-icon>
+             </span>
+           </td>
+         </ng-container>
+
+         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+         <!-- This row will be shown when there is no matching data. -->
+         <tr class="mat-row" *matNoDataRow>
+           <td class="mat-cell" colspan="4">No se encontraron registros "{{input.value}}"</td>
+         </tr>
+       </table>
+
+       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Página"></mat-paginator>
+     </div>
+   </div>

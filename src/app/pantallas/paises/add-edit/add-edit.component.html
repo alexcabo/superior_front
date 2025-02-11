@@ -1,0 +1,49 @@
+<div mat-dialog-title>
+  <h1>{{data ? 'Edit': 'Add'}} PAISES </h1>
+</div>
+<form [formGroup]="empForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>Nombre:</mat-label>
+              <input matInput type="text" placeholder="" formControlName="nombre">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Id Afip:</mat-label>
+              <input matInput placeholder="" formControlName="id_afip">
+          </mat-form-field>
+      </div>
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>CUIT Personas Físicas:</mat-label>
+              <input matInput type="text" placeholder="99999999999" formControlName="cuit_fisica">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>CUIT Personas Jurídicas:</mat-label>
+              <input matInput type="text" placeholder="99999999999" formControlName="cuit_juridica">
+          </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>CUIT Personas Físicas:</mat-label>
+            <input matInput type="text" placeholder="99999999999" formControlName="cuit_fisica">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>CUIT Personas Jurídicas:</mat-label>
+            <input matInput type="text" placeholder="99999999999" formControlName="cuit_juridica">
+        </mat-form-field>
+      </div>
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>CUIT Otras Personas:</mat-label>
+              <input matInput type="text" placeholder="99999999999" formControlName="cuit_Otra">
+          </mat-form-field>
+      </div>
+    </div>
+  <div mat-dialog-actions class="action-btns">
+      <button style="margin: 10px;" mat-raised-button color="accent" type="submit">{{data ? 'Update': 'Save'}}</button>
+      <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancel</button>
+  </div>
+</form>
