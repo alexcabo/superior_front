@@ -1,5 +1,5 @@
 <div mat-dialog-title>
-  <h1>{{data ? 'Modificar': 'Agregar'}} Pais </h1>
+  <h1>{{data ? 'Modificar': 'Agregar'}} Provincia </h1>
 </div>
 <form [formGroup]="empForm" (ngSubmit)="onSubmit()">
   <div mat-dialog-content class="content">
@@ -10,23 +10,21 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
               <mat-label>Id Afip</mat-label>
-              <input matInput placeholder="" formControlName="id_afip" required="" class="form-control">
+              <input matInput placeholder="" formControlName="id_afip" class="form-control">
           </mat-form-field>
       </div>
+
       <div class="row">
-          <mat-form-field appearance="outline">
-              <mat-label>CUIT Físicas</mat-label>
-              <input matInput type="text"  placeholder="solo nros" formControlName="cuit_fisica">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-              <mat-label>CUIT Jurídicas</mat-label>
-              <input matInput type="text" placeholder="solo nros" formControlName="cuit_juridica">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-              <mat-label>CUIT Otras</mat-label>
-              <input matInput type="text" placeholder="solo nros"  formControlName="cuit_otra">
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Pais</mat-label>
+          <mat-select formControlName="id_pais" required="">
+            @for (country of paises; track country.id) {
+              <mat-option [value]="country.id">{{country.nombre}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
       </div>
+
     </div>
   <div mat-dialog-actions class="action-btns">
       <button style="margin: 10px;" mat-raised-button color="accent" type="submit">{{data ? 'Update': 'Save'}}</button>

@@ -1,8 +1,8 @@
-import { Component, computed, Input, input, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatList, MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { CommonModule } from '@angular/common';
@@ -49,12 +49,12 @@ export class SideNavBarComponent {
       expanded: false,
       subItems: [
         {
-          icon: 'add_box',
+          icon: 'explore',
           label: 'Paises',
           route: 'paises',
         },
         {
-          icon: 'add_box',
+          icon: 'location_on',
           label: 'Provincias',
           route: 'provincias',
         },
@@ -66,12 +66,12 @@ export class SideNavBarComponent {
       route: 'clientes',
     },
     {
-      icon: 'list',
+      icon: 'badget',
       label: 'Choferes',
       route: 'choferes',
     },
     {
-      icon: 'list',
+      icon: 'commute',
       label: 'Viajes',
       route: 'viajes',
     },

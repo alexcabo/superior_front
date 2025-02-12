@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PaisesService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1/paises'; // URL de la API para obtener todos los países
+export class ProvinciasService {
+  private apiUrl = 'http://127.0.0.1:8000/api/v1/provincias'; // URL de la API para obtener todos los países
 
   // Inyectamos HttpClient directamente
   constructor(private http: HttpClient) {}

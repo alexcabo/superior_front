@@ -18,14 +18,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
-import { PaisesService } from '../../services/paises.service';
-import { AddEditComponent } from './add-edit/add-edit.component';
 import { RouterModule } from '@angular/router';
+import { ProvinciasService } from '../../services/provincias.service';
+import { AddEditComponent } from './add-edit/add-edit.component';
 
 @Component({
   standalone: true,
-  selector: 'app-paises',
+  selector: 'app-provincias',
   imports: [
     MatToolbarModule,
     MatIconModule,
@@ -43,12 +42,12 @@ import { RouterModule } from '@angular/router';
     MatSortModule,
     RouterModule
   ],
-  templateUrl: './paises.component.html',
-  styleUrl: './paises.component.css'
+  templateUrl: './provincias.component.html',
+  styleUrl: './provincias.component.css'
 })
 
 
-export class PaisesComponent {
+export class ProvinciasComponent {
 
 
 // the columns that will be displayed in the employee details table
@@ -56,9 +55,7 @@ displayedColumns: string[] = [
   'id',
   'nombre',
   'id_afip',
-  'cuit_fisica',
-  'cuit_juridica',
-  'cuit_otra',
+  'id_pais',
   'acciones',
 ];
 
@@ -71,7 +68,7 @@ dataSource!: MatTableDataSource<any>;
 // dependency injection
 constructor(
   private dialog: MatDialog,
-  private servService: PaisesService,
+  private servService: ProvinciasService,
 ) {}
 
 ngOnInit(): void {
