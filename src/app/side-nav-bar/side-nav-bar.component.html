@@ -1,0 +1,73 @@
+<mat-toolbar class="mat-elevation-z3">
+  <button mat-icon-button (click)="collapseAll()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>HACHE Viajes</span>
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav
+    opened
+    mode="side"
+    [style.width]="sidenavWidth()"
+    [@sidenavAnimation]="collapsed() ? 'closed' : 'open'"
+  >
+    <div class="sidenav-header">
+      <img
+        src="logo.png"
+        [width]="150"
+        [height]="100"
+        alt=""
+      />
+    </div>
+
+    <mat-nav-list>
+      <ng-container *ngFor="let item of menuItems()">
+        <a
+          mat-list-item
+          *ngIf="!item.subItems"
+          [routerLink]="item.route"
+          routerLinkActive
+          #rla="routerLinkActive"
+          [activated]="rla.isActive"
+        >
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle *ngIf="!collapsed()">{{ item.label }}</span>
+        </a>
+        <div *ngIf="item.subItems">
+          <a mat-list-item (click)="toggleMenu(item)">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <span matListItemTitle *ngIf="!collapsed()">{{ item.label }}</span>
+            <span matListItemMeta>
+              <mat-icon>{{
+                item.expanded ? "expand_less" : "expand_more"
+              }}</mat-icon>
+            </span>
+          </a>
+          <div [@menuState]="item.expanded ? 'expanded' : 'collapsed'">
+            <ng-container *ngFor="let subItem of item.subItems">
+              <a
+                mat-list-item
+                [routerLink]="subItem.route"
+                routerLinkActive
+                #subRla="routerLinkActive"
+                [activated]="subRla.isActive"
+                class="submenu-item"
+              >
+                <mat-icon matListItemIcon>{{ subItem.icon }}</mat-icon>
+                <span matListItemTitle *ngIf="!collapsed()">{{
+                  subItem.label
+                }}</span>
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

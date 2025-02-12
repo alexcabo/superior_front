@@ -19,12 +19,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
-import { PaisesService } from '../services/paises.service';
-import { AddEditComponent } from '../pantallas/paises/add-edit/add-edit.component';
+import { PaisesService } from '../../services/paises.service';
+import { AddEditComponent } from './add-edit/add-edit.component';
 
 @Component({
   standalone: true,
-  selector: 'app-home',
+  selector: 'app-paises',
   imports: [
     MatToolbarModule,
     MatIconModule,
@@ -41,12 +41,12 @@ import { AddEditComponent } from '../pantallas/paises/add-edit/add-edit.componen
     MatPaginatorModule,
     MatSortModule
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  templateUrl: './paises.component.html',
+  styleUrl: './paises.component.css'
 })
 
 
-export class HomeComponent {
+export class PaisesComponent {
 
 
 // the columns that will be displayed in the employee details table

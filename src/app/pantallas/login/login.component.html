@@ -1,0 +1,26 @@
+<div class="login-container">
+  <img src="logo.png" alt="Logo" class="logo"  />
+  <form (ngSubmit)="onLogin()" class="login-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Usuario</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="documento"
+        name="documento"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit">Ingresar</button>
+  </form>
+</div>

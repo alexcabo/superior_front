@@ -1,8 +1,14 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
+import { PaisesComponent } from './pantallas/paises/paises.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', 
+      component: DashboardComponent 
+    },
+    { path: 'paises', 
+        component: PaisesComponent 
+    },
     
     //{ path: 'trip/:id', component: TripDetailComponent },
     //{ path: 'booking/:tripId', component: BookingComponent }
