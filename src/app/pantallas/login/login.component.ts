@@ -3,7 +3,7 @@ import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-import { AuthService } from '../../servicios/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -28,12 +28,13 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   private _snackBar = inject(MatSnackBar);
-  documento = '';
+  email = '';
   password = '';
+
   constructor(private router: Router, private authService: AuthService) {}
 
   onLogin(): void {
-    this.authService.login(this.documento, this.password).subscribe({
+    this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         if (response.estado === false) {
           this._snackBar.open(
