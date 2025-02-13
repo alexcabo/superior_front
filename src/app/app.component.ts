@@ -7,13 +7,13 @@ import { AuthService } from './services/auth.service';
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    SideNavBarComponent, 
+    SideNavBarComponent,
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Hache Servicios';
+  title = 'Hache Viajes y Servicios';
   loggedIn = false;
 
   constructor(private authService: AuthService) {
