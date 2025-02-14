@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { sidenavAnimations } from './side-nav-bar.animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AuthService } from '../services/auth.service';
 
 export type MenuItem = {
   icon: string;
@@ -36,10 +37,14 @@ export type MenuItem = {
   animations: sidenavAnimations,
 })
 export class SideNavBarComponent {
+ constructor(private authService: AuthService) { }
+
   logout() {
     // Lógica de deslogueo
     console.log('Logout clicked');
+    this.authService.logout();
   }
+  
   collapsed = signal(false);
 
   menuItems = signal<MenuItem[]>([
@@ -106,7 +111,7 @@ export class SideNavBarComponent {
     {
       icon: 'logout',
       label: 'Salir',
-      route: 'login',
+      route: 'logout',
     },
   ]);
   toggleMenu(item: MenuItem) {

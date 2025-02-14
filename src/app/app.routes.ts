@@ -4,6 +4,8 @@ import { PaisesComponent } from './pantallas/paises/paises.component';
 import { ProvinciasComponent } from './pantallas/provincias/provincias.component';
 import { LoginComponent } from './pantallas/login/login.component';
 import { AuthGuard } from './services/auth.guard';
+import { LogoutComponent } from './pantallas/logout/logout.component';
+import { SideNavBarComponent } from './side-nav-bar/side-nav-bar.component';
 
 export const routes: Routes = [
     {
@@ -28,7 +30,8 @@ export const routes: Routes = [
       canActivate: [AuthGuard]
     },
     { path: 'logout',
-      component: ProvinciasComponent
-    },
-    { path: '**', redirectTo: 'login' }
+      component: LogoutComponent,
+      canActivate: [AuthGuard]
+    },    
+    { path: '**', redirectTo: '' }
 ];

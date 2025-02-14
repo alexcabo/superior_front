@@ -52,7 +52,7 @@ export class LoginComponent {
             panelClass: 'notificacionCorrecta',
           });
           console.log('Login exitoso');
-          this.router.navigate(['/manuales']).then((navigated) => {
+          this.router.navigate(['/']).then((navigated) => {
             console.log('Navegación realizada:', navigated);
           });
         }
