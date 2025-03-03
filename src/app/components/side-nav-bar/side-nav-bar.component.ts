@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { sidenavAnimations } from './side-nav-bar.animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 export type MenuItem = {
   icon: string;
@@ -49,42 +49,36 @@ export class SideNavBarComponent {
 
   menuItems = signal<MenuItem[]>([
     {
-      icon: 'account_balance',
-      label: 'Archivos',
-      expanded: false,
+      icon: 'people',
+      label: 'Alumnos',
+      route: 'alumnos',
+    },
+    {
+      icon: 'settings_accessibility',
+      label: 'Docentes',
+      route: 'docentes',
+    },
+    {
+      icon: 'edit_calendar',
+      label: 'Exámenes',
+      route: 'examenes',
       subItems: [
         {
-          icon: 'explore',
-          label: 'Paises',
-          route: 'paises',
+        icon: 'format_line_spacing',
+        label: 'Turnos',
+        route: 'turnos',
         },
         {
-          icon: 'location_on',
-          label: 'Provincias',
-          route: 'provincias',
+          icon: 'format_list_numbered',
+          label: 'Mesas',
+          route: 'mesas',
         },
-      ],
-    },
-    {
-      icon: 'people',
-      label: 'Clientes',
-      route: 'clientes',
-    },
-    {
-      icon: 'badget',
-      label: 'Choferes',
-      route: 'choferes',
-    },
-    {
-      icon: 'commute',
-      label: 'Viajes',
-      route: 'viajes',
-    },
-
-    {
-      icon: 'settings',
-      label: 'Configuración',
-      route: 'configuracion',
+        {
+          icon: 'edit_note',
+          label: 'Inscripción Alunno',
+          route: 'inscripcion',
+        },
+        ]
     },
     {
       icon: 'insert_chart',
@@ -93,20 +87,48 @@ export class SideNavBarComponent {
       subItems: [
         {
           icon: 'bar_chart',
-          label: 'Viajes',
-          route: 'infViajes',
+          label: 'Estado',
+          route: 'estado',
         },
         {
           icon: 'pie_chart',
-          label: 'Choferes',
-          route: 'infChoferes',
-        },
-        {
-          icon: 'article',
-          label: 'Ventas',
-          route: 'infVentas',
+          label: 'Otro',
+          route: 'info',
         },
       ],
+    },    
+    {
+      icon: 'settings',
+      label: 'Configuración',
+      route: 'configuracion',
+      expanded: false,
+      subItems: [
+        {
+        icon: 'library_books',
+        label: 'Carreras',
+        route: 'carreras',
+        },
+        {
+          icon: 'subject',
+          label: 'Materias',
+          route: 'materias',
+          },
+        {
+          icon: 'map',
+          label: 'Paises',
+          route: 'paises',
+        },
+        {
+          icon: 'explore',
+          label: 'Provincias',
+          route: 'provincias',
+        },
+        {
+          icon: 'location_on',
+          label: 'Localidades',
+          route: 'localidades',
+        },
+      ],      
     },
     {
       icon: 'logout',

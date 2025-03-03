@@ -1,78 +1,109 @@
+/* Contenedor principal */
 .login-container {
   display: flex;
-  justify-content: space-between;
-  height: 100vh;  /* Full height */
-}
-
-/* Estilo para la sección de imagen */
-.image-section {
-  flex: 1 1 45%;  /* La imagen ocupará el 35% del ancho */
-  background-color: #f0f0f0;
-  display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.image-section img {
-  max-width: 100%;  /* La imagen ocupará todo el espacio disponible */
-  max-height: 100%;
-  height: auto;
-  object-fit: cover; 
-}
-
-/* Estilo para la sección del formulario de login */
-.login-form-section {
-  flex: 1 1 55%;  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-}
-
-/* Estilo del card del login */
-.login-card {
-  max-width: 600px;
+  height: 100vh;
+  background: linear-gradient(135deg, #fffefe, #fbfafa, #a2bbf6); /* Degradado cálido con tonos de rosa, naranja y azul */
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* Hacer que el formulario ocupe todo el ancho disponible */
-.full-width {
+/* Sección del logo */
+.logo-container {
+  flex: 0 0 35%; /* Esto hace que el logo ocupe solo el 35% del ancho */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 20px; /* Añadir espacio entre el logo y el formulario */
+}
+
+.logo {
+  max-width: 90%; /* Ajustar el tamaño del logo */
+  height: auto;
+  object-fit: contain; /* Ajuste automático para mantener la proporción */
+}
+
+/* Estilo para la sección del formulario */
+.login-form-section {
+  flex: 1; /* La sección del formulario ocupa el resto del espacio disponible */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
-/* Responsividad para pantallas pequeñas */
-@media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;  /* Apilar el formulario y la imagen en pantallas pequeñas */
-  }
+/* Card de Login */
+.login-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px; /* Bordes redondeados más suaves */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+  width: 100%;
+  max-width: 400px; /* Limita el tamaño máximo del card */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  .image-section {
-    width: 100%;
-    height: 200px;  /* Ajusta la altura de la imagen en móviles */
-  }
+/* Efecto hover en el card */
+.login-card:hover {
+  transform: translateY(-5px); /* Efecto flotante */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Sombra más intensa en hover */
+}
 
-  .login-form-section {
-    width: 100%;
-  }
+h2 {
+  color: #ff6a00;
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+/* Estilo del formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 mat-form-field {
   width: 100%;
-  margin-bottom: 16px;
 }
 
+/* Estilo de los botones */
 button {
-  width: 50%;
-  margin: 0 25%;
-}
-
-button.mat-success {
-  background-color: rgb(125, 191, 25);
+  background-color: #ff6a00;
   color: #fff;
+  padding: 14px;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: green; /* Color de fondo al pasar el mouse */
+  background-color: #ff4e00; /* Cambio de color más intenso al pasar el mouse */
+  cursor: pointer;
+}
+
+/* Estilo responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .logo-container {
+    width: 100%;
+    padding-right: 0; /* Eliminamos el espacio en pantallas pequeñas */
+    margin-bottom: 20px; /* Aseguramos que haya espacio entre el logo y el formulario */
+  }
+
+  .logo {
+    width: 70%; /* Reducimos el tamaño del logo en pantallas pequeñas */
+  }
+
+  .login-card {
+    width: 100%;
+    padding: 20px;
+  }
 }

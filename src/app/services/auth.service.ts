@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -13,7 +12,7 @@ export class AuthService {
     throw new Error('Method not implemented.');
   }
   //private apiUrl = `${environment.apiUrl}/auth/login`;
-  private apiUrl = 'http://127.0.0.1:8000/api/v1';
+  private apiUrl = 'http://127.0.0.1:8000/api/v2';
   //private apiKey = 'bWmS?&H?U@VGUEwe*%!A;e!A-L-E.'; // La API Key que te pasaron
 
   constructor(private http: HttpClient, private router: Router) {

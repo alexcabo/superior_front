@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class PaisesService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v1/paises'; // URL de la API para obtener todos los países
+  private apiUrl = 'http://127.0.0.1:8000/api/v2/pais'; // URL de la API para obtener todos los países
   private headers =  new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
   // Inyectamos HttpClient directamente
