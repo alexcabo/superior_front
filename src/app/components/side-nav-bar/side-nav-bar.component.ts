@@ -114,19 +114,9 @@ export class SideNavBarComponent {
           route: 'materias',
           },
         {
-          icon: 'map',
-          label: 'Paises',
-          route: 'paises',
-        },
-        {
-          icon: 'explore',
-          label: 'Provincias',
-          route: 'provincias',
-        },
-        {
           icon: 'location_on',
-          label: 'Localidades',
-          route: 'localidades',
+          label: 'Residencias',
+          route: 'residencias',
         },
       ],      
     },

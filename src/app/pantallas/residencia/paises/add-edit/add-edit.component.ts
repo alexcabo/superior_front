@@ -4,11 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatOption } from '@angular/material/core';
-import { MatSelect } from '@angular/material/select';
-
-import { ProvinciasService } from '../../../services/provincias.service';
-import { PaisesService } from '../../../services/paises.service';
+import { PaisesService } from '../../../../services/paises.service';
 
 @Component({
   standalone: true,
@@ -17,22 +13,17 @@ import { PaisesService } from '../../../services/paises.service';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule,
-    MatOption,
-    MatSelect
+    MatDialogModule
   ],
 templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.css'
 })
 
 export class AddEditComponent implements OnInit {
-
   empForm: FormGroup;
-  paises: any[] = [];
 
   constructor(
-    private servService: ProvinciasService,
-    private paisService: PaisesService,
+    private servService: PaisesService,
     private dialogRef: MatDialogRef<AddEditComponent>,
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -40,13 +31,9 @@ export class AddEditComponent implements OnInit {
     this.empForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       id_afip: [''],
-      id_pais: ['', Validators.required]
-    });
-
-    // Cargas los países
-    this.paisService.getList().subscribe(data => {
-      //console.log(data.message);
-      this.paises = data.message;
+      cuit_fisica: [''],
+      cuit_juridica: [''],
+      cuit_otra: ['']
     });
   }
 
@@ -71,7 +58,6 @@ export class AddEditComponent implements OnInit {
             },
           });
       } else {
-        //console.log(this.empForm.value);
         this.servService.add(this.empForm.value).subscribe({
           next: (val: any) => {
             //alert('Registro Agregado!');
@@ -86,4 +72,5 @@ export class AddEditComponent implements OnInit {
       }
     }
   }
+
 }

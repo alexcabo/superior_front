@@ -23,7 +23,7 @@ export class PaisesService {
 
   update(id: number, data: any): Observable<any> {
       const headers = this.headers;
-      return this.http.put(this.apiUrl + '/' + id + '/edit', data, {headers});
+      return this.http.put(this.apiUrl + '/' + id , data, {headers});
   }
 
   getList(): Observable<any> {
@@ -33,6 +33,7 @@ export class PaisesService {
 
   delete(id: number): Observable<any> {
     const headers = this.headers;
-      return this.http.delete(this.apiUrl + '/' + id + '/delete', {headers});
+      return this.http.delete(this.apiUrl + '/' + id, {headers});
   }
+
 }

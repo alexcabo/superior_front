@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Hache Viajes y Servicios';
+  title = 'Escom44';
   loggedIn$ = false;
 
   constructor(authService: AuthService) {

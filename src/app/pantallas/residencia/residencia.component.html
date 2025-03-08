@@ -1,0 +1,13 @@
+<div class="container">
+    <!-- Componente de Paises (izquierda) -->
+    <div class="left-panel">
+      <app-paises (paisSeleccionado)="onPaisSeleccionado($event)"></app-paises>
+    </div>
+  
+    <!-- Componente de Provincias (derecha) -->
+    @if(paisSeleccionado){ 
+      <div class="right-panel">
+        <app-provincias [paisId]="paisSeleccionado"></app-provincias>
+      </div>
+    }
+  </div>

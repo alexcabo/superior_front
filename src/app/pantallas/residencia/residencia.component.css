@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+  
+  .left-panel {
+    flex: 1;  /* Hace que el panel izquierdo ocupe el 50% del espacio */
+    margin-right: 20px; /* Separación entre los dos paneles */
+  }
+  
+  .right-panel {
+    flex: 2; /* Hace que el panel derecho ocupe el 100% del espacio */
+  }
+  
+  mat-table {
+    width: 100%; /* Para que las tablas ocupen todo el espacio disponible */
+  }
+  
+  mat-toolbar {
+    margin-bottom: 20px; /* Separación entre la barra de herramientas y la tabla */
+  }

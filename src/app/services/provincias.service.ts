@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProvinciasService {
-  private apiUrl = 'http://127.0.0.1:8000/api/v2/provincia'; // URL de la API para obtener todos los países
+  private url = 'http://127.0.0.1:8000/api/v2';
+  private apiUrl = this.url + '/provincia'; // URL de la API para obtener todos los países
   private headers =  new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
   // Inyectamos HttpClient directamente
@@ -22,16 +23,21 @@ export class ProvinciasService {
 
   update(id: number, data: any): Observable<any> {
       const headers = this.headers;
-      return this.http.put(this.apiUrl + '/' + id + '/edit', data, {headers});
+      return this.http.put(this.apiUrl + '/' + id, data, {headers});
   }
 
   getList(): Observable<any> {
-    const headers = this.headers;
+      const headers = this.headers;
       return this.http.get(this.apiUrl, {headers});
   }
 
   delete(id: number): Observable<any> {
     const headers = this.headers;
-      return this.http.delete(this.apiUrl + '/' + id + '/delete', {headers});
+      return this.http.delete(this.apiUrl + '/' + id, {headers});
+  }
+
+  getProvincias(paisId: number): Observable<any> {
+    const headers = this.headers;
+    return this.http.get(this.url + '/pais/' + paisId + '/provincia', {headers});
   }
 }

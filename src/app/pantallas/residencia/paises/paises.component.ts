@@ -1,5 +1,5 @@
 
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -18,13 +18,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { RouterModule } from '@angular/router';
-import { ProvinciasService } from '../../services/provincias.service';
+
+import { PaisesService } from '../../../services/paises.service';
 import { AddEditComponent } from './add-edit/add-edit.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  selector: 'app-provincias',
+  selector: 'app-paises',
   imports: [
     MatToolbarModule,
     MatIconModule,
@@ -42,20 +43,25 @@ import { AddEditComponent } from './add-edit/add-edit.component';
     MatSortModule,
     RouterModule
   ],
-  templateUrl: './provincias.component.html',
-  styleUrl: './provincias.component.css'
+  templateUrl: './paises.component.html',
+  styleUrl: './paises.component.css'
 })
 
 
-export class ProvinciasComponent {
-
+export class PaisesComponent {
+  dataSourceProv: any[] = [];  // lista de países
+  provincias: any[] = [];  // almacenaremos las provincias
+  
+  @Output() paisSeleccionado = new EventEmitter<number>();
 
 // the columns that will be displayed in the employee details table
 displayedColumns: string[] = [
-  'id',
+  //'id',
   'nombre',
-  'id_afip',
-  'id_pais',
+  // 'id_afip',
+  // 'cuit_fisica',
+  // 'cuit_juridica',
+  // 'cuit_otra',
   'acciones',
 ];
 
@@ -68,11 +74,15 @@ dataSource!: MatTableDataSource<any>;
 // dependency injection
 constructor(
   private dialog: MatDialog,
-  private servService: ProvinciasService,
+  private servService: PaisesService,
 ) {}
 
 ngOnInit(): void {
   this.getList();
+}
+
+onSelectPais(paisId: number): void {
+  this.paisSeleccionado.emit(paisId); // Emite el ID del país seleccionado
 }
 
 openAddEditDialog() {

@@ -8,13 +8,13 @@
               <mat-label>Nombre</mat-label>
               <input matInput type="text" placeholder="" formControlName="nombre" required="" class="form-control">
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
               <mat-label>Id Afip</mat-label>
               <input matInput placeholder="" formControlName="id_afip" required="" class="form-control">
-          </mat-form-field>
+          </mat-form-field>  -->
       </div>
       <div class="row">
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
               <mat-label>CUIT Físicas</mat-label>
               <input matInput type="text"  placeholder="solo nros" formControlName="cuit_fisica">
           </mat-form-field>
@@ -25,11 +25,11 @@
           <mat-form-field appearance="outline">
               <mat-label>CUIT Otras</mat-label>
               <input matInput type="text" placeholder="solo nros"  formControlName="cuit_otra">
-          </mat-form-field>
+          </mat-form-field>  -->
       </div>
     </div>
   <div mat-dialog-actions class="action-btns">
-      <button style="margin: 10px;" mat-raised-button color="accent" type="submit">{{data ? 'Update': 'Save'}}</button>
-      <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancel</button>
+      <button style="margin: 10px;" mat-raised-button color="accent" type="submit">{{data ? 'Actualizar': 'Crear'}}</button>
+      <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false">Cancelar</button>
   </div>
 </form>
