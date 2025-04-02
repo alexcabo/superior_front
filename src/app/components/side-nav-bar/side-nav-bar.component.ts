@@ -48,7 +48,7 @@ export class SideNavBarComponent {
   
   // Devuelve el margen del contenido dependiendo si el sidenav está abierto o cerrado
   sidenavMargin() {
-    return this.isSidenavOpen ? '240px' : '65px';
+    return this.isSidenavOpen ? '203px' : '0px';
   }
 
   // Método para hacer logout
@@ -145,7 +145,7 @@ export class SideNavBarComponent {
   }
 
   // Propiedad calculada para el tamaño del sidenav (basado en si está colapsado o no)
-  sidenavWidth = computed(() => (this.collapsed() ? '65px' : '240px'));
+  sidenavWidth = computed(() => (this.collapsed() ? '0px' : '203px'));
 
   // Tamaño dinámico del logo
   logoPicSize = computed(() => (this.collapsed() ? '32' : '160')); // Tamaño dinámico del logo
