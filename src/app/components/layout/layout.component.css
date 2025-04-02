@@ -1,0 +1,17 @@
+/* layout.component.css */
+.content-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 16px;
+    background-color: #f4f4f4; /* Color de fondo del contenido */
+    overflow-y: auto;
+  }
+  
+  app-footer {
+    margin-top: auto;
+  }
+  

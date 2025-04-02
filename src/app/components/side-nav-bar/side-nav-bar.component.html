@@ -1,5 +1,5 @@
 <mat-toolbar class="mat-elevation-z3">
-  <button mat-icon-button (click)="collapseAll()">
+  <button mat-icon-button (click)="toggleSidenav()">
     <mat-icon>menu</mat-icon>
   </button>
   <span>Escom44</span>
@@ -8,17 +8,18 @@
 
 <mat-sidenav-container>
   <mat-sidenav
-    opened
+    [opened]="isSidenavOpen"
     mode="side"
     [style.width]="sidenavWidth()"
-    [@sidenavAnimation]="collapsed() ? 'closed' : 'open'"
-  >
+    [@sidenavAnimation]="isSidenavOpen ? 'open' : 'closed'">
+    
+    <!-- Contenido del sidenav -->
     <div class="sidenav-header">
       <img
         src="logo.png"
-        [width]="150"
-        [height]="50"
-        alt=""
+        [width]="logoPicSize()"
+        [height]="logoPicSize()"
+        alt="Logo"
         routerLink=""
       />
     </div>
@@ -31,8 +32,7 @@
           [routerLink]="item.route"
           routerLinkActive
           #rla="routerLinkActive"
-          [activated]="rla.isActive"
-        >
+          [activated]="rla.isActive">
           <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
           <span matListItemTitle *ngIf="!collapsed()">{{ item.label }}</span>
         </a>
@@ -41,9 +41,7 @@
             <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
             <span matListItemTitle *ngIf="!collapsed()">{{ item.label }}</span>
             <span matListItemMeta>
-              <mat-icon>{{
-                item.expanded ? "expand_less" : "expand_more"
-              }}</mat-icon>
+              <mat-icon>{{ item.expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
             </span>
           </a>
           <div [@menuState]="item.expanded ? 'expanded' : 'collapsed'">
@@ -54,12 +52,9 @@
                 routerLinkActive
                 #subRla="routerLinkActive"
                 [activated]="subRla.isActive"
-                class="submenu-item"
-              >
+                class="submenu-item">
                 <mat-icon matListItemIcon>{{ subItem.icon }}</mat-icon>
-                <span matListItemTitle *ngIf="!collapsed()">{{
-                  subItem.label
-                }}</span>
+                <span matListItemTitle *ngIf="!collapsed()">{{ subItem.label }}</span>
               </a>
             </ng-container>
           </div>
@@ -68,7 +63,8 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content class="content" [style.margin-left]="sidenavWidth()">
-    <router-outlet></router-outlet>
+  <!-- Contenido principal del sitio (ajustará el margen según el estado del sidenav) -->
+  <mat-sidenav-content [style.margin-left]="sidenavMargin()">
+    <ng-content> </ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

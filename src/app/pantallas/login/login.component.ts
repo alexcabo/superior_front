@@ -28,14 +28,31 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   private _snackBar = inject(MatSnackBar);
-  email = '';
+  documento = '';
   password = '';
 
   constructor(private router: Router, private authService: AuthService) {}
 
   onLogin(): void {
-    this.authService.login(this.email, this.password).subscribe({
+    // Verificación de que no haya campos vacíos
+    if (!this.documento || !this.password) {
+      this._snackBar.open(
+        'No Completó los datos.',
+        'Cerrar',
+        {
+          duration: 4000,
+          panelClass: 'notificacionError',
+        }
+      );
+      return
+    }
+
+    // Llamamos al servicio de autenticación para hacer login
+    this.authService.login(this.documento, this.password).subscribe({
       next: (response) => {
+        // Si la respuesta indica que la autenticación falló (estado === false)
+        console.log(response);
+
         if (response.estado === false) {
           this._snackBar.open(
             response.mensaje || 'Error de autenticación.',
@@ -45,25 +62,37 @@ export class LoginComponent {
               panelClass: 'notificacionError',
             }
           );
-          console.error('Error en la respuesta del backend:', response.mensaje);
+          //console.error('Error en la respuesta del backend:', response.mensaje);
         } else {
+          // Si la autenticación fue exitosa
           this._snackBar.open('Inicio de sesión exitoso.', 'Cerrar', {
             duration: 5000,
             panelClass: 'notificacionCorrecta',
           });
-          console.log('Login exitoso');
-          this.router.navigate(['/']).then((navigated) => {
-            console.log('Navegación realizada:', navigated);
+          //console.log('Login exitoso');
+  
+          // Guardar el token de acceso en el localStorage
+          localStorage.setItem('access_token', response.token);
+  
+          // Redirigir al dashboard después de un login exitoso
+          this.router.navigate(['/dashboard']).then((navigated) => {
+            if (navigated) {
+              //console.log('Navegación exitosa al dashboard');
+            } else {
+              //console.log('Falló la navegación al dashboard');
+            }
           });
         }
       },
       error: (error) => {
+        // Manejo de error si la solicitud falla
         this._snackBar.open('Error de autenticación.', 'Cerrar', {
           duration: 4000,
           panelClass: 'notificacionError',
         });
-        console.error('Error de autenticación', error);
+        //console.error('Error de autenticación', error);
       },
     });
   }
+  
 }

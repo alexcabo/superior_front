@@ -6,6 +6,7 @@ import { LogoutComponent } from './pantallas/logout/logout.component';
 import { PaisesComponent } from './pantallas/residencia/paises/paises.component';
 import { ProvinciasComponent } from './pantallas/residencia/provincias/provincias.component';
 import { ResidenciaComponent } from './pantallas/residencia/residencia.component';
+import { UsuariosComponent } from './pantallas/usuarios/usuarios.component';
 
 export const routes: Routes = [
     {
@@ -22,8 +23,16 @@ export const routes: Routes = [
             component: DashboardComponent,
             canActivate: [AuthGuard]
           },
-          { path: '',
+          { path: ' ',
             component: DashboardComponent,
+            canActivate: [AuthGuard]
+          },
+          { path: 'alumnos/:rol',
+              component: UsuariosComponent,
+              canActivate: [AuthGuard]
+          },
+          { path: 'docentes/:rol',
+            component: UsuariosComponent,
             canActivate: [AuthGuard]
           },
           { path: 'paises',

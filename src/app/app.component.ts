@@ -17,6 +17,4 @@ export class AppComponent {
   constructor(authService: AuthService) {
      this.loggedIn$ = authService.loggedIn
   }
-
-
 }

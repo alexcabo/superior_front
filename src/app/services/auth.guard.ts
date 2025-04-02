@@ -9,9 +9,7 @@ export class AuthGuard {
   
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): boolean {
+  canActivate(): boolean {
       if (this.authService.loggedIn) {
         return true;
       } else {
@@ -20,3 +18,4 @@ export class AuthGuard {
       }
   }
 }
+
